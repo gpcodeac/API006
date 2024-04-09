@@ -1,10 +1,20 @@
-﻿namespace API006.Database.Models
+﻿using Microsoft.EntityFrameworkCore;
+using System.ComponentModel.DataAnnotations;
+using System.Runtime.CompilerServices;
+
+namespace API006.Database.Models
 {
+    [Index(nameof(Username), IsUnique = true)]
     public class User
     {
         public int Id { get; set; }
+
+        [StringLength(50)]
         public string Username { get; set; }
+
+        [StringLength(50)]
         public string PasswordHash { get; set; }
-        public List<Account> Accounts { get; set; }
+
+        public virtual List<Account> Accounts { get; set; }
     }
 }
