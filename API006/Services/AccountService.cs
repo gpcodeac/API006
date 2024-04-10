@@ -1,7 +1,6 @@
 ﻿using API006.Services.Interfaces;
 using API006.Database.Repositories.Interfaces;
 using API006.Database.Models;
-using API006.Services.Interfaces;
 
 namespace API006.Services
 {
@@ -13,6 +12,19 @@ namespace API006.Services
         {
             _accountRepository = accountRepository;
         }
+        public Account Delete(string account)
+        {
+            return _accountRepository.Delete(account);
+        }
 
+        public Account Withdraw(string accountNumber, int amount)
+        {
+            return _accountRepository.Withdraw(accountNumber, amount);
+        }
+
+        public Account Deposit(string accountNumber, int amount)
+        {
+            return _accountRepository.Deposit(accountNumber, amount);
+        }
     }
 }

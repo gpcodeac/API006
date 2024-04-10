@@ -1,5 +1,5 @@
-﻿using API006.DTOs;
-using API006.Database.Models;
+﻿using API006.Database.Models;
+using API006.DTOs;
 
 namespace API006.Services.Interfaces
 {
