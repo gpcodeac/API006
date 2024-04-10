@@ -8,11 +8,11 @@ using API006.Services.Interfaces;
 
 
 namespace API006
-{
-    public class Program
     {
-        public static void Main(string[] args)
+    public class Program
         {
+        public static void Main(string[] args)
+            {
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
@@ -30,14 +30,16 @@ namespace API006
                 options.UseSqlServer(builder.Configuration.GetConnectionString("Database"));
             });
 
+            builder.Services.AddAutoMapper(typeof(Program));
+
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
-            {
+                {
                 app.UseSwagger();
                 app.UseSwaggerUI();
-            }
+                }
 
             app.UseHttpsRedirection();
 
@@ -47,6 +49,6 @@ namespace API006
             app.MapControllers();
 
             app.Run();
+            }
         }
     }
-}

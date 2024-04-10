@@ -1,6 +1,10 @@
-﻿namespace API006.Controllers
-{
-    public class TransactionController
+﻿using Microsoft.AspNetCore.Mvc;
+
+namespace API006.Controllers
     {
+    [ApiController]
+
+    public class TransactionController : ControllerBase
+        {
+        }
     }
-}
