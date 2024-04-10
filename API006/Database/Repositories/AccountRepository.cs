@@ -13,12 +13,12 @@ namespace API006.Database.Repositories
             _context = context;
         }
 
-        public Account Delete(Account account)
+        public Account? Delete(Account? account)
         {
             return _context.Accounts.Remove(account).Entity;
         }
 
-        public Account Withdraw(string accountNumber, int amount)
+        public Account? Withdraw(string accountNumber, int amount)
         {
             var acc = _context.Accounts.FirstOrDefault(account1 => account1.AccountNumber == accountNumber);
             if (acc != null && (acc.Balance > amount))
@@ -29,15 +29,15 @@ namespace API006.Database.Repositories
             return null;
         }
 
-        public Account Delete(string accountNumber)
+        public Account? Delete(string accountNumber)
         {
-            var acc = _context.Accounts.FirstOrDefault(account => account.AccountNumber == accountNumber);
+            var acc = _context.Accounts.FirstOrDefault(account => account != null && account.AccountNumber == accountNumber);
             return _context.Accounts.Remove(acc).Entity;
         }
 
-        public Account Deposit(string accountNumber, int amount)
+        public Account? Deposit(string accountNumber, int amount)
         {
-            var acc = _context.Accounts.FirstOrDefault(account1 => account1.AccountNumber == accountNumber);
+            var acc = _context.Accounts.FirstOrDefault(account1 => account1 != null && account1.AccountNumber == accountNumber);
             if (acc != null)
             {
                 acc.Balance += amount;
@@ -48,7 +48,7 @@ namespace API006.Database.Repositories
 
         public Account? GetAccount(string accountNumber)
         {
-            return _context.Accounts.FirstOrDefault(x => x.AccountNumber == accountNumber);
+            return _context.Accounts.FirstOrDefault(x => x != null && x.AccountNumber == accountNumber);
         }
 
         public Account? GetAccount(int userId)
@@ -56,7 +56,7 @@ namespace API006.Database.Repositories
             return _context.Accounts.FirstOrDefault(x => x.UserId == userId);
         }
 
-        public void AddAccount(Account account)
+        public void AddAccount(Account? account)
         {
             _context.Accounts.Add(account);
             _context.SaveChanges();

@@ -1,6 +1,4 @@
 ﻿using API006.Database.Models;
-using System;
-using System.Collections.Generic;
 
 namespace API006.Database.Repositories.Interfaces
     {

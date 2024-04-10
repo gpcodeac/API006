@@ -1,5 +1,4 @@
 ﻿using API006.Database.Models;
-using Microsoft.EntityFrameworkCore;
 
 namespace API006.Database.Repositories.Interfaces
 {

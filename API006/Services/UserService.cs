@@ -18,7 +18,6 @@ namespace API006.Services
         {
             return _userRepository.GetAllUsers().Select(user => new UserDto
             {
-                Id = user.Id,
                 Username = user.Username
             }).ToList();
         }
