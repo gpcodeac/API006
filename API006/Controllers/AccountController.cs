@@ -37,7 +37,6 @@ namespace API006.Controllers
         }
 
         [HttpGet]
-        //[Route("/user/{userId}")]
         public IActionResult GetAccount([FromQuery] int userId)
         {
             try
@@ -57,11 +56,11 @@ namespace API006.Controllers
         }
 
         [HttpPost]
-        public IActionResult AddAccount([FromBody] AccountDto account)
+        public IActionResult AddAccount([FromBody] AccountDto account, [FromQuery] int userId)
         {
             try
             {
-                _accountService.AddAccount(account);
+                _accountService.AddAccount(account, userId);
                 return NoContent();
             }
             catch (System.Exception)

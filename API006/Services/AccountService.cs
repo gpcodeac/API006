@@ -40,7 +40,7 @@ namespace API006.Services
             return _accountRepository.GetAccount(userId);
         }
 
-        public void AddAccount(AccountDto account)
+        public void AddAccount(AccountDto account, int userId)
         {
             if (account == null)
             {
@@ -50,16 +50,13 @@ namespace API006.Services
             {
                 throw new System.ArgumentException("Account number cannot be empty", nameof(account.AccountNumber));
             }
-            //if (account.UserId == 0)
-            //{
-            //    throw new System.ArgumentException("User ID cannot be 0", nameof(account.UserId));
-            //}
             if (GetAccount(account.AccountNumber) is not null)
             {
                 throw new System.ArgumentException("Account already exists", nameof(account.AccountNumber));
             }
             Account accountToAdd = new();
             _mapper.Map(account, accountToAdd);
+            accountToAdd.UserId = userId;
             _accountRepository.AddAccount(accountToAdd);
         }
     }
