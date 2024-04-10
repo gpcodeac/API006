@@ -13,30 +13,70 @@ namespace API006.Services
         {
         private readonly ITransactionRepository _transactionRepository;
         private readonly IMapper _mapper;
+        private readonly ILogger<TransactionService> _logger;
 
-        public TransactionService(ITransactionRepository transactionRepository, IMapper mapper)
+        public TransactionService(ITransactionRepository transactionRepository, IMapper mapper, ILogger<TransactionService> logger)
             {
             _transactionRepository = transactionRepository;
             _mapper = mapper;
+            _logger = logger;
             }
 
         public List<TransactionDto> GetAllTransactions()
             {
-            var transactions = _transactionRepository.GetAll();
-            return _mapper.Map<List<TransactionDto>>(transactions);
+            try
+                {
+                _logger.LogInformation("Fetching all transactions.");
+                var transactions = _transactionRepository.GetAll();
+                if (transactions == null)
+                    {
+                    return new List<TransactionDto>();
+                    }
+                return _mapper.Map<List<TransactionDto>>(transactions);
+                }
+            catch (Exception ex)
+                {
+                _logger.LogError(ex, "Error occurred while fetching all transactions.");
+                throw;
+                }
+
             }
 
         public TransactionDto CreateTransaction(TransactionDto transactionDto)
             {
-            var transaction = _mapper.Map<Transaction>(transactionDto);
-            var createdTransaction = _transactionRepository.Create(transaction);
-            return _mapper.Map<TransactionDto>(createdTransaction);
+            try
+                {
+                _logger.LogInformation("Creating a new transaction.");
+                var transaction = _mapper.Map<Transaction>(transactionDto);
+                var createdTransaction = _transactionRepository.Create(transaction);
+                return _mapper.Map<TransactionDto>(createdTransaction);
+                }
+
+            catch (Exception ex)
+                {
+                _logger.LogError(ex, "Error occurred while creating a transaction.");
+                throw;
+                }
+
             }
 
         public List<TransactionDto> GetTransactionsByDate(DateTime date)
             {
-            var transaction = _transactionRepository.GetByDate(date);
-            return _mapper.Map<List<TransactionDto>>(transaction);
+            try
+                {
+                var transactions = _transactionRepository.GetByDate(date);
+                if (transactions == null)
+                    {
+                    return new List<TransactionDto>();
+                    }
+                return _mapper.Map<List<TransactionDto>>(transactions);
+                }
+
+            catch (Exception ex)
+                {
+                _logger.LogError(ex, $"Error occurred while fetching transactions for date: {date.ToShortDateString()}.");
+                throw;
+                }
             }
         }
     }

@@ -1,10 +1,11 @@
 using Microsoft.EntityFrameworkCore;
 using API006.Database;
+
+using API006.Services.Interfaces;
+using API006.Services;
+using API006.Mappings;
 using API006.Database.Repositories;
 using API006.Database.Repositories.Interfaces;
-using API006.Services;
-using API006.Services.Interfaces;
-
 
 
 namespace API006
@@ -32,7 +33,10 @@ namespace API006
                 options.UseSqlServer(builder.Configuration.GetConnectionString("Database"));
             });
 
-            builder.Services.AddAutoMapper(typeof(Program));
+            builder.Services.AddScoped<ITransactionRepository, TransactionRepository>();
+            builder.Services.AddScoped<ITransactionService, TransactionService>();
+
+            builder.Services.AddAutoMapper(typeof(TransactionProfile));
 
             var app = builder.Build();
 
