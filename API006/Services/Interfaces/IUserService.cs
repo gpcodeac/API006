@@ -2,6 +2,8 @@
 {
     public interface IUserService
     {
-        
+        IEnumerable<UserDto> GetUsers();
+        User CreateNewUser(User user);
+
     }
 }

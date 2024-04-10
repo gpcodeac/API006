@@ -5,6 +5,8 @@ using API006.Database.Repositories.Interfaces;
 using API006.Services;
 using API006.Services.Interfaces;
 
+
+
 namespace API006
 {
     public class Program
@@ -22,11 +24,15 @@ namespace API006
 
             builder.Services.AddScoped<IAccountRepository, AccountRepository>();
             builder.Services.AddScoped<IAccountService, AccountService>();
+            builder.Services.AddScoped<IUserRepository, UserRepository>();
+            builder.Services.AddScoped<IUserService, UserService>();
 
             builder.Services.AddDbContext<ApplicationDBContext>(options =>
             {
                 options.UseSqlServer(builder.Configuration.GetConnectionString("Database"));
             });
+
+            builder.Services.AddAutoMapper(typeof(Program));
 
             var app = builder.Build();
 
