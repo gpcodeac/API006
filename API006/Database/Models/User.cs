@@ -1,6 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
-using System.Runtime.CompilerServices;
 
 namespace API006.Database.Models
 {
@@ -15,6 +14,6 @@ namespace API006.Database.Models
         [StringLength(50)]
         public string PasswordHash { get; set; }
 
-        public virtual List<Account> Accounts { get; set; }
+        public virtual List<Account> Accounts { get; set; } = new ();
     }
 }
