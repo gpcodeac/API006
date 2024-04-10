@@ -1,4 +1,7 @@
-﻿namespace API006.Services.Interfaces
+﻿using API006.Database.Models;
+using API006.DTOs;
+
+namespace API006.Services.Interfaces
 {
     public interface IUserService
     {
