@@ -4,8 +4,8 @@ namespace API006.Services.Interfaces
 {
     public interface IAccountService
     {
-        public Account Delete(string account);
-        public Account Withdraw(string accountNumber, int amount);
-        public Account Deposit(string accountNumber, int amount);
+         Account Delete(string account);
+         Account Withdraw(string accountNumber, int amount);
+         Account Deposit(string accountNumber, int amount);
     }
 }
