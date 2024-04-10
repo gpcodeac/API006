@@ -4,6 +4,7 @@ using API006.Database.Repositories;
 using API006.Database.Repositories.Interfaces;
 using API006.Services;
 using API006.Services.Interfaces;
+using API006.Mappings;
 
 namespace API006
 {
@@ -22,6 +23,7 @@ namespace API006
 
             builder.Services.AddScoped<IAccountRepository, AccountRepository>();
             builder.Services.AddScoped<IAccountService, AccountService>();
+            builder.Services.AddAutoMapper(typeof(AccountProfile));
 
             builder.Services.AddDbContext<ApplicationDBContext>(options =>
             {

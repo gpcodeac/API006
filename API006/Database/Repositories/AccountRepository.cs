@@ -13,5 +13,24 @@ namespace API006.Database.Repositories
         {
             _context = context;
         }
+
+        public Account? GetAccount(string accountNumber)
+        {
+            return _context.Accounts.FirstOrDefault(x => x.AccountNumber == accountNumber);
+        }
+
+        public Account? GetAccount(int userId)
+        {
+            return _context.Accounts.FirstOrDefault(x => x.UserId == userId);
+        }
+
+        public void AddAccount(Account account)
+        {
+            _context.Accounts.Add(account);
+            _context.SaveChanges();
+        }
+
+        
+
     }
 }
