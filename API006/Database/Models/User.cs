@@ -14,6 +14,6 @@ namespace API006.Database.Models
         [StringLength(50)]
         public string PasswordHash { get; set; }
 
-        public virtual List<Account> Accounts { get; set; }
+        public virtual List<Account> Accounts { get; set; } = new ();
     }
 }
