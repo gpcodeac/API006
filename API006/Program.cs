@@ -8,11 +8,11 @@ using API006.Services.Interfaces;
 
 
 namespace API006
-    {
+{
     public class Program
-        {
+    {
         public static void Main(string[] args)
-            {
+        {
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
@@ -24,6 +24,8 @@ namespace API006
 
             builder.Services.AddScoped<IAccountRepository, AccountRepository>();
             builder.Services.AddScoped<IAccountService, AccountService>();
+            builder.Services.AddScoped<IUserRepository, UserRepository>();
+            builder.Services.AddScoped<IUserService, UserService>();
 
             builder.Services.AddDbContext<ApplicationDBContext>(options =>
             {
@@ -36,10 +38,10 @@ namespace API006
 
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
-                {
+            {
                 app.UseSwagger();
                 app.UseSwaggerUI();
-                }
+            }
 
             app.UseHttpsRedirection();
 
@@ -49,6 +51,6 @@ namespace API006
             app.MapControllers();
 
             app.Run();
-            }
         }
     }
+}
