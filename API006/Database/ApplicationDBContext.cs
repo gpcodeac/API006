@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using API006.Database.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace API006.Database
 {
@@ -8,8 +9,8 @@ namespace API006.Database
         {
         }
 
-        public DbSet<Models.User> Users { get; set; }
-        public DbSet<Models.Account> Accounts { get; set; }
-        public DbSet<Models.Transaction> Transactions { get; set; }
+        public DbSet<User> Users { get; set; }
+        public DbSet<Account> Accounts { get; set; }
+        public DbSet<Transaction> Transactions { get; set; }
     }
 }

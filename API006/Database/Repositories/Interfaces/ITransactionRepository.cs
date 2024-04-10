@@ -1,6 +1,6 @@
 ﻿namespace API006.Database.Repositories.Interfaces
 {
-    public class ITransactionRepository
+    public interface ITransactionRepository
     {
     }
 }
