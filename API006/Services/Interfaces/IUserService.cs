@@ -7,6 +7,5 @@ namespace API006.Services.Interfaces
     {
         IEnumerable<UserDto> GetUsers();
         User CreateNewUser(User user);
-
     }
 }

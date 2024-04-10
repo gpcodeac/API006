@@ -1,9 +1,7 @@
 ﻿using API006.Database.Models;
-using API006.Database.Repositories;
 using API006.Database.Repositories.Interfaces;
 using API006.DTOs;
 using API006.Services.Interfaces;
-using AutoMapper;
 
 namespace API006.Services
 {
