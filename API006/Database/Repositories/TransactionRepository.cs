@@ -24,14 +24,16 @@ namespace API006.Database.Repositories
 
         public List<Transaction> GetAll()
             {
-            return _context.Transactions.ToList();
+            var transactions = _context.Transactions.ToList();
+            return transactions ?? new List<Transaction>();
             }
 
         public List<Transaction> GetByDate(DateTime date)
             {
-            return _context.Transactions
+            var transactions = _context.Transactions
                            .Where(t => t.Date.Date == date.Date)
                            .ToList();
+            return transactions ?? new List<Transaction>();
             }
         }
     }
