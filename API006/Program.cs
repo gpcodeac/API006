@@ -50,8 +50,6 @@ namespace API006
 
             app.UseHttpsRedirection();
 
-            app.UseAuthorization();
-
             app.MapControllers();
 
             app.Run();

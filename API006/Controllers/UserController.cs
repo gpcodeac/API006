@@ -19,14 +19,16 @@ namespace API006.Controllers
         {
             _userService = userService;
         }
+        
+        // missing Get By Name and Password method
 
 
         [HttpGet]
         public ActionResult<IEnumerable<UserDto>> GetAll()
         {
+            // in get all select method is not needed (it should be in repository layer)
             var users = _userService.GetUsers().Select(user => new UserDto
             {
-                Id = user.Id,
                 Username = user.Username
 
             }).ToList();
@@ -41,8 +43,7 @@ namespace API006.Controllers
             try
             {
                 var user = userDto.ConvertToUser();
-                _userService.CreateNewUser(user);
-                return Ok();
+                return Ok(_userService.CreateNewUser(user));
             }
             catch (Exception ex)
             {
