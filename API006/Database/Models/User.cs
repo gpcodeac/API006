@@ -1,6 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
-using System.Runtime.CompilerServices;
 
 namespace API006.Database.Models
 {

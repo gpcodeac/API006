@@ -1,5 +1,9 @@
 using Microsoft.EntityFrameworkCore;
 using API006.Database;
+using API006.Database.Repositories;
+using API006.Database.Repositories.Interfaces;
+using API006.Services;
+using API006.Services.Interfaces;
 
 namespace API006
 {
@@ -15,6 +19,9 @@ namespace API006
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
+
+            builder.Services.AddScoped<IAccountRepository, AccountRepository>();
+            builder.Services.AddScoped<IAccountService, AccountService>();
 
             builder.Services.AddDbContext<ApplicationDBContext>(options =>
             {
