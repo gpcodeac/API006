@@ -7,5 +7,8 @@ namespace API006.Database.Repositories.Interfaces
          Account Withdraw(string accountNumber, int amount);
          Account Delete(string accountNumber);
          Account Deposit(string accountNumber, int amount);
+        Account? GetAccount(string accountNumber);
+        Account? GetAccount(int userId);
+        void AddAccount(Account account);
     }
 }
