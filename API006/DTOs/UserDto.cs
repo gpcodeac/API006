@@ -8,7 +8,7 @@ namespace API006.DTOs
     {
         public string Username { get; set; }
 
-        [JsonIgnore]
+        
         public string PasswordHash { get; set; }
         
 

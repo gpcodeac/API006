@@ -60,9 +60,9 @@ namespace API006.Controllers
                 _accountService.AddAccount(account, userId);
                 return NoContent();
             }
-            catch (Exception)
+            catch (Exception e)
             {
-                return StatusCode(500);
+                return StatusCode(500, e.Message);
             }
         }
 

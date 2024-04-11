@@ -40,6 +40,7 @@ namespace API006.Services
                 Date = System.DateTime.Now
             };
             _transactionService.CreateTransaction(transactionDto);
+            //account.Transactions.Add(transactionDto);
             return account;
         }
 
