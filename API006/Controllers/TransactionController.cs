@@ -1,6 +1,7 @@
 ﻿using API006.DTOs;
 using API006.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace API006.Controllers
     {
@@ -40,23 +41,23 @@ namespace API006.Controllers
 
             }
 
-        [HttpGet("ByDate/{date}")]
-        public IActionResult GetTransactionsByDate(DateTime date)
+        [HttpGet("ByDate")]
+        public IActionResult GetTransactionsByDate(DateTime? startDate = null, DateTime? endDate = null)
             {
             try
                 {
-                _logger.LogInformation($"Controller action GetTransactionsByDate called for date: {date.ToShortDateString()}.");
-                var transactions = _transactionService.GetTransactionsByDate(date);
+                _logger.LogInformation($"Controller action: Fetching all transactions with date filters.");
+                var transactions = _transactionService.GetTransactionsByDate(startDate, endDate);
                 if (transactions.Count == 0)
                     {
-                    _logger.LogWarning($"No transactions found for date: {date.ToShortDateString()}.");
-                    return NotFound();
+                    _logger.LogWarning("Controller: No transactions found with the specified date filters.");
+                    return NotFound("No transactions found.");
                     }
                 return Ok(transactions);
                 }
             catch (Exception ex)
                 {
-                _logger.LogError(ex, $"Error occurred in GetTransactionsByDate for date: {date.ToShortDateString()}.");
+                _logger.LogError(ex, "Controller: Error occurred in GetAllTransactions with date filters.");
                 return StatusCode(500, "Internal server error");
                 }
 

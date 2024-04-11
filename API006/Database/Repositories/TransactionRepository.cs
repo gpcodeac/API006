@@ -28,12 +28,27 @@ namespace API006.Database.Repositories
             return transactions ?? new List<Transaction>();
             }
 
-        public List<Transaction> GetByDate(DateTime date)
+        public List<Transaction> GetByDate(DateTime? startDate = null, DateTime? endDate = null, bool sortByDate = false, bool sortByAmount = false)
             {
-            var transactions = _context.Transactions
-                           .Where(t => t.Date.Date == date.Date)
-                           .ToList();
-            return transactions ?? new List<Transaction>();
+            var query = _context.Transactions.AsQueryable();
+            if (startDate.HasValue)
+                {
+                query = query.Where(t => t.Date >= startDate.Value);
+                }
+            if (endDate.HasValue)
+                {
+                query = query.Where(t => t.Date <= endDate.Value);
+
+                }
+            if (sortByDate)
+                {
+                query = query.OrderBy(t => t.Date);
+                }
+            if (sortByAmount)
+                {
+                query = query.OrderBy(a => a.Amount);
+                }
+            return query.ToList();
             }
         }
     }

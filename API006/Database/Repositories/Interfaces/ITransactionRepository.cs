@@ -6,8 +6,8 @@ namespace API006.Database.Repositories.Interfaces
     {
     public interface ITransactionRepository
         {
-             List<Transaction> GetAll();
-             Transaction Create(Transaction transaction);
-             List<Transaction> GetByDate(DateTime date);
+        List<Transaction> GetAll();
+        Transaction Create(Transaction transaction);
+        List<Transaction> GetByDate(DateTime? startDate = null, DateTime? endDate = null, bool sortByDate = false, bool sortByAmount = false);
         }
     }
