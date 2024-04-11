@@ -15,7 +15,8 @@ namespace API006.Database.Repositories
 
         public Account? Delete(Account? account)
         {
-            return _context.Accounts.Remove(account).Entity;
+            Account acc = _context.Accounts.Remove(account).Entity;
+            return acc;
         }
 
         public Account? Withdraw(string accountNumber, int amount)
@@ -51,7 +52,7 @@ namespace API006.Database.Repositories
             return _context.Accounts.FirstOrDefault(x => x != null && x.AccountNumber == accountNumber);
         }
 
-        public List<Account>? GetAccount(int userId)
+        public List<Account>? GetAccounts(int userId)
         {
             return _context.Accounts.Where(x => x.UserId == userId).ToList();
         }

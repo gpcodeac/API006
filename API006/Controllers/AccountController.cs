@@ -35,11 +35,11 @@ namespace API006.Controllers
         }
 
         [HttpGet]
-        public IActionResult GetAccount([FromQuery] int userId)
+        public IActionResult GetAccounts([FromQuery] int userId)
         {
             try
             {
-                List<Account>? accounts = _accountService.GetAccount(userId);
+                List<Account>? accounts = _accountService.GetAccounts(userId);
                 if (accounts == null)
                 {
                     return NotFound();
