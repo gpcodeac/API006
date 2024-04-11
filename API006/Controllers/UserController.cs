@@ -20,20 +20,15 @@ namespace API006.Controllers
             _userService = userService;
         }
         
-        // missing Get By Name and Password method
-
-
-        [HttpGet]
-        public ActionResult<IEnumerable<UserDto>> GetAll()
+        [HttpGet("{username}/{password}")]
+        public ActionResult<UserDto> GetByNameAndPassword(string username, string password)
         {
-            // in get all select method is not needed (it should be in repository layer)
-            var users = _userService.GetUsers().Select(user => new UserDto
+            var user = _userService.GetUserByUsernameAndPassword(username, password);
+            if (user == null)
             {
-                Username = user.Username
-
-            }).ToList();
-
-            return Ok(users);
+                return NotFound("User not found.");
+            }
+            return Ok(user);
         }
 
         [HttpPost]

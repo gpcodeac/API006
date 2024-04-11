@@ -8,8 +8,7 @@ namespace API006.DTOs
         public string Username { get; set; }
 
         public string PasswordHash { get; set; }
-        // Include other relevant properties but exclude sensitive data like passwords.
-
+        
 
         public User ConvertToUser()
         {
