@@ -7,5 +7,7 @@ namespace API006.Database.Repositories.Interfaces
         IEnumerable<User> GetAllUsers();
         User CreateNewUser(User user);
 
+
+        User GetUserById(int id);
     }
 }

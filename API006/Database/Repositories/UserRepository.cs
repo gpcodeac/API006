@@ -24,5 +24,10 @@ namespace API006.Database.Repositories
             _context.SaveChanges();
             return user;
         }
+
+        public User GetUserById(int id)
+        {
+            return _context.Users.FirstOrDefault(u => u.Id == id);
+        }
     }
 }
