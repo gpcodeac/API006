@@ -1,5 +1,6 @@
 ﻿using System.Drawing;
 using API006.Database.Models;
+using System.Text.Json.Serialization;
 
 namespace API006.DTOs
 {
@@ -7,6 +8,7 @@ namespace API006.DTOs
     {
         public string Username { get; set; }
 
+        [JsonIgnore]
         public string PasswordHash { get; set; }
         
 

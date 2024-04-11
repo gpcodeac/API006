@@ -13,9 +13,23 @@ namespace API006.Database.Repositories
             _context = context;
         }
 
-        public Account? Delete(Account? account)
+        //public Account? Delete(Account? account)
+        //{
+        //    Account acc = account;
+        //    _context.Accounts.Remove(account);
+        //    _context.SaveChanges();
+        //    return acc;
+        //}
+
+        public Account? Delete(string accountNumber)
         {
-            Account acc = _context.Accounts.Remove(account).Entity;
+            var acc = _context.Accounts.FirstOrDefault(account => account != null && account.AccountNumber == accountNumber);
+            if (acc == null)
+            {
+                return null;
+            }
+            _context.Accounts.Remove(acc);
+            _context.SaveChanges();
             return acc;
         }
 
@@ -25,15 +39,11 @@ namespace API006.Database.Repositories
             if (acc != null && (acc.Balance > amount))
             {
                 acc.Balance -= amount;
-                return _context.Accounts.Update(acc).Entity;
+                _context.Accounts.Update(acc);
+                _context.SaveChanges();
+                return acc;
             }
             return null;
-        }
-
-        public Account? Delete(string accountNumber)
-        {
-            var acc = _context.Accounts.FirstOrDefault(account => account != null && account.AccountNumber == accountNumber);
-            return _context.Accounts.Remove(acc).Entity;
         }
 
         public Account? Deposit(string accountNumber, int amount)
@@ -42,7 +52,9 @@ namespace API006.Database.Repositories
             if (acc != null)
             {
                 acc.Balance += amount;
-                return _context.Accounts.Update(acc).Entity;
+                _context.Accounts.Update(acc);
+                _context.SaveChanges();
+                return acc;
             }
             return null;
         }
