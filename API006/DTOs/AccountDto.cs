@@ -4,6 +4,5 @@
     {
         public string AccountNumber { get; set; }
         public decimal Balance { get; set; }
-        // Additional properties as required.
     }
 }
