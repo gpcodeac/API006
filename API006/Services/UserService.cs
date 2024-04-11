@@ -33,6 +33,11 @@ namespace API006.Services
         public UserDto GetUserById(int id)
         {
             var user = _userRepository.GetUserById(id);
+            return new UserDto
+            {
+                Username = user.Username
+                //PasswordHash = user.PasswordHash //Ar tinka sitas? Siaip cia sensitive data tai gal nereikia
+            };
         }
 
         public UserDto GetUserByUsernameAndPassword(string username, string password)
