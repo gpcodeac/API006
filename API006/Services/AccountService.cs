@@ -35,7 +35,7 @@ namespace API006.Services
             return _accountRepository.GetAccount(accountNumber);
         }
 
-        public Account? GetAccount(int userId)
+        public List<Account>? GetAccount(int userId)
         {
             return _accountRepository.GetAccount(userId);
         }
@@ -56,7 +56,7 @@ namespace API006.Services
             }
             Account accountToAdd = new();
             _mapper.Map(account, accountToAdd);
-            accountToAdd.UserId = userId;
+            accountToAdd.UserId = userId; //need to add check if user exists, when user service is implemented
             _accountRepository.AddAccount(accountToAdd);
         }
     }

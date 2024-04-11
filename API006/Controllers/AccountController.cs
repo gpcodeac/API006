@@ -41,12 +41,12 @@ namespace API006.Controllers
         {
             try
             {
-                var account = _accountService.GetAccount(userId);
-                if (account == null)
+                List<Account>? accounts = _accountService.GetAccount(userId);
+                if (accounts == null)
                 {
                     return NotFound();
                 }
-                return Ok(account);
+                return Ok(accounts);
             }
             catch (System.Exception)
             {
