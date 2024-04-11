@@ -33,6 +33,10 @@ namespace API006.Services
         public UserDto GetUserById(int id)
         {
             var user = _userRepository.GetUserById(id);
+            
+            if (user == null)
+                return null;
+
             return new UserDto
             {
                 Username = user.Username

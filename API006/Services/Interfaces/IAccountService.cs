@@ -9,7 +9,7 @@ namespace API006.Services.Interfaces
         Account? Withdraw(string accountNumber, int amount);
         Account? Deposit(string accountNumber, int amount);
         Account? GetAccount(string accountNumber);
-        List<Account>? GetAccount(int userId);
+        List<Account>? GetAccounts(int userId);
         void AddAccount(AccountDto account, int userId);
     }
 }
