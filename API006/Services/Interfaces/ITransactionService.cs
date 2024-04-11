@@ -6,6 +6,6 @@ namespace API006.Services.Interfaces
         {
         List<TransactionDto> GetAllTransactions();
         TransactionDto CreateTransaction(TransactionDto transactionDto);
-        List<TransactionDto> GetTransactionsByDate(DateTime? startDate = null, DateTime? endDate = null);
+        List<TransactionDto> GetTransactionsByDate(DateTime? startDate, DateTime? endDate, decimal amount);
         }
     }

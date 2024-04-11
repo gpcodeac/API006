@@ -66,12 +66,13 @@ namespace API006.Services
 
             }
 
-        public List<TransactionDto> GetTransactionsByDate(DateTime? startDate = null, DateTime? endDate = null)
+        public List<TransactionDto> GetTransactionsByDate(DateTime? startDate, DateTime? endDate, decimal amount)
             {
             try
                 {
                 _logger.LogInformation("Fetching transactions from the repository with date filter.");
-                var transactions = _transactionRepository.GetByDate(startDate, endDate);
+                var transactions = _transactionRepository.GetByDate(startDate, endDate, amount);
+
                 return _mapper.Map<List<TransactionDto>>(transactions);
 
                 }

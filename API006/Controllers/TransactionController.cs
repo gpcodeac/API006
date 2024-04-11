@@ -1,7 +1,8 @@
 ﻿using API006.DTOs;
 using API006.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
-using static System.Runtime.InteropServices.JavaScript.JSType;
+
+
 
 namespace API006.Controllers
     {
@@ -42,12 +43,12 @@ namespace API006.Controllers
             }
 
         [HttpGet("ByDate")]
-        public IActionResult GetTransactionsByDate(DateTime? startDate = null, DateTime? endDate = null)
+        public IActionResult GetTransactionsByDate(DateTime? startDate, DateTime? endDate, decimal amount)
             {
             try
                 {
                 _logger.LogInformation($"Controller action: Fetching all transactions with date filters.");
-                var transactions = _transactionService.GetTransactionsByDate(startDate, endDate);
+                var transactions = _transactionService.GetTransactionsByDate(startDate, endDate, amount);
                 if (transactions.Count == 0)
                     {
                     _logger.LogWarning("Controller: No transactions found with the specified date filters.");
