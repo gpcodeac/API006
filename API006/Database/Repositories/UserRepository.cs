@@ -25,9 +25,14 @@ namespace API006.Database.Repositories
             return user;
         }
 
+
         public User GetUserById(int id)
         {
             return _context.Users.FirstOrDefault(u => u.Id == id);
+
+        public User GetByUsernameAndPassword(string username, string password)
+        {
+            return _context.Users.FirstOrDefault(u => u.Username == username && u.PasswordHash == password);
         }
     }
 }

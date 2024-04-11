@@ -51,9 +51,9 @@ namespace API006.Database.Repositories
             return _context.Accounts.FirstOrDefault(x => x != null && x.AccountNumber == accountNumber);
         }
 
-        public Account? GetAccount(int userId)
+        public List<Account>? GetAccount(int userId)
         {
-            return _context.Accounts.FirstOrDefault(x => x.UserId == userId);
+            return _context.Accounts.Where(x => x.UserId == userId).ToList();
         }
 
         public void AddAccount(Account? account)
