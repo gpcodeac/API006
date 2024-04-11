@@ -29,16 +29,29 @@ namespace API006.Services
             return (createdUser);
         }
 
+
+        public UserDto GetUserById(int id)
+        {
+            var user = _userRepository.GetUserById(id);
+
         public UserDto GetUserByUsernameAndPassword(string username, string password)
         {
             var user = _userRepository.GetByUsernameAndPassword(username, password);
+
             if (user == null)
                 return null;
 
             return new UserDto
             {
                 Username = user.Username
+
+                
+            };
+        }
+    }
+
                 PasswordHash = user.PasswordHash //Ar tinka sitas? Siaip cia sensitive data tai gal nereikia
             };
         }
+
 }

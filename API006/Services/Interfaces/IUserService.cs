@@ -9,6 +9,9 @@ namespace API006.Services.Interfaces
 
         User CreateNewUser(User user);
 
+        UserDto GetUserById(int id);
+
         UserDto GetUserByUsernameAndPassword(string username, string password);
+
     }
 }
