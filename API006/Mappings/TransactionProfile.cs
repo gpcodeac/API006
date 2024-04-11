@@ -1,6 +1,7 @@
 ﻿using API006.DTOs;
 using AutoMapper;
-using System.Transactions;
+using API006.Database.Models;
+using Transaction = System.Transactions.Transaction;
 
 namespace API006.Mappings
     {
@@ -9,7 +10,7 @@ namespace API006.Mappings
         public TransactionProfile()
             {
             CreateMap<Transaction, TransactionDto>().ReverseMap();
-
+            CreateMap<User, UserDto>().ReverseMap();
             }
         }
     }

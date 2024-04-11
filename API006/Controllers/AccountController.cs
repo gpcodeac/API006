@@ -1,8 +1,7 @@
 ﻿using API006.Database.Models;
-using Microsoft.AspNetCore.Mvc;
-using API006.Services.Interfaces;
 using API006.DTOs;
-
+using API006.Services.Interfaces;
+using Microsoft.AspNetCore.Mvc;
 
 namespace API006.Controllers
 {
@@ -29,10 +28,9 @@ namespace API006.Controllers
                 }
                 return Ok(account);
             }
-            catch (System.Exception)
+            catch (Exception)
             {
                 return StatusCode(500);
-                throw;
             }
         }
 
@@ -48,10 +46,9 @@ namespace API006.Controllers
                 }
                 return Ok(accounts);
             }
-            catch (System.Exception)
+            catch (Exception)
             {
                 return StatusCode(500);
-                throw;
             }
         }
 
@@ -63,10 +60,9 @@ namespace API006.Controllers
                 _accountService.AddAccount(account, userId);
                 return NoContent();
             }
-            catch (System.Exception)
+            catch (Exception)
             {
                 return StatusCode(500);
-                throw;
             }
         }
 

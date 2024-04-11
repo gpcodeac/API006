@@ -16,17 +16,17 @@ namespace API006.Services
             _accountRepository = accountRepository;
             _mapper = mapper;
         }
-        public Account Delete(string account)
+        public Account? Delete(string account)
         {
             return _accountRepository.Delete(account);
         }
 
-        public Account Withdraw(string accountNumber, int amount)
+        public Account? Withdraw(string accountNumber, int amount)
         {
             return _accountRepository.Withdraw(accountNumber, amount);
         }
 
-        public Account Deposit(string accountNumber, int amount)
+        public Account? Deposit(string accountNumber, int amount)
         {
             return _accountRepository.Deposit(accountNumber, amount);
         }
@@ -54,7 +54,7 @@ namespace API006.Services
             {
                 throw new System.ArgumentException("Account already exists", nameof(account.AccountNumber));
             }
-            Account accountToAdd = new();
+            Account? accountToAdd = new();
             _mapper.Map(account, accountToAdd);
             accountToAdd.UserId = userId; //need to add check if user exists, when user service is implemented
             _accountRepository.AddAccount(accountToAdd);

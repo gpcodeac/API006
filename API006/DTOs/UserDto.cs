@@ -5,8 +5,9 @@ namespace API006.DTOs
 {
     public class UserDto
     {
-        public int Id { get; set; }
         public string Username { get; set; }
+
+        public string PasswordHash { get; set; }
         // Include other relevant properties but exclude sensitive data like passwords.
 
 
@@ -15,7 +16,7 @@ namespace API006.DTOs
             User user = new()
             {
                 Username = Username,
-                Id = Id
+                PasswordHash = PasswordHash
             };
             return user;
         }
