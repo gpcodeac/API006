@@ -46,8 +46,13 @@ namespace API006.Services
                 var transaction = _mapper.Map<Transaction>(transactionDto);
                 var createdTransaction = _transactionRepository.Create(transaction);
                 return _mapper.Map<TransactionDto>(createdTransaction);
-            }
+                }
+            catch (AutoMapperMappingException ex)
+                {
 
+                _logger.LogError(ex, "Mapping failed in CreateTransaction");
+                throw;
+                }
             catch (Exception ex)
             {
                 _logger.LogError(ex, "Error occurred while creating a transaction.");
@@ -56,17 +61,19 @@ namespace API006.Services
 
         }
 
-        public List<TransactionDto> GetTransactionsByDate(DateTime date)
-        {
-            try
+        public List<TransactionDto> GetTransactionsByDate(DateTime? startDate, DateTime? endDate, decimal amount)
             {
-                var transactions = _transactionRepository.GetByDate(date);
+            try
+                {
+                _logger.LogInformation("Fetching transactions from the repository with date filter.");
+                var transactions = _transactionRepository.GetByDate(startDate, endDate, amount);
+
                 return _mapper.Map<List<TransactionDto>>(transactions);
             }
 
             catch (Exception ex)
-            {
-                _logger.LogError(ex, $"Error occurred while fetching transactions for date: {date.ToShortDateString()}.");
+                {
+                _logger.LogError(ex, "Error occurred while fetching transactions with date filters.");
                 throw;
             }
         } 
